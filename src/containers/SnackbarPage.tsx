@@ -38,8 +38,8 @@ const SnackbarPage: FC<AppProps> = props => {
                 Notistack Redux + Redux-Saga example
             </Typography>
             <Grid container spacing={1} alignContent='center' alignItems='baseline' justify='center'>
-                <Grid item xs={2}>
-                    <Button variant='contained' onClick={handleButtonClick}> Display Snackbar </Button>
+                <Grid item xs={3}>
+                    <Button variant='contained' onClick={handleButtonClick}> Display Snackbar with action </Button>
                 </Grid>
             </Grid>
         </Fragment>

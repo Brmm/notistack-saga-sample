@@ -2,8 +2,8 @@
 export enum HomeActions {
   INCREMENT = '@@demo/INCREMENT_COUNT',
   DECREMENT = '@@demo/DECREMENT_COUNT',
-  INCREMENT_ASYNC = '@@demo/INCREMENT_ASYNC',
-  DECREMENT_ASYNC = '@@demo/DECREMENT_ASYNC',
+  INCREMENT_SAGA = '@@demo/INCREMENT_SAGA',
+  DECREMENT_SAGA = '@@demo/DECREMENT_SAGA',
 }
 
 export type HomeState = {
