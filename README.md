@@ -6,13 +6,7 @@
 
 <p>
 <img src="https://forthebadge.com/images/badges/built-by-developers.svg"><img src="https://forthebadge.com/images/badges/built-with-love.svg"><img src="https://forthebadge.com/images/badges/built-with-science.svg">
-</p>
-<br/>
-<p>
 <img src="https://forthebadge.com/images/badges/its-not-a-lie-if-you-believe-it.svg"><img src="https://forthebadge.com/images/badges/made-with-crayons.svg">
-</p>
-<br/>
-<p>
 <img src="https://forthebadge.com/images/badges/uses-badges.svg"><img src="https://forthebadge.com/images/badges/uses-git.svg"><img src="https://forthebadge.com/images/badges/uses-html.svg"><img src="https://forthebadge.com/images/badges/uses-js.svg">
 </p>
 
