@@ -14,7 +14,7 @@ const SnackbarPage: FC<AppProps> = props => {
     const handleButtonClick = () => {
         props.enqueueSnackbar({
             message: 'Clicked the snackbar summon button!',
-            options: { variant: 'success' },
+            options: { variant: 'info' },
         });
     };
 

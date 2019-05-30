@@ -16,7 +16,7 @@ function* handleIncrement (action: ReturnType<typeof incrementSaga>) {
 function* handleDecrement (action: ReturnType<typeof decrementSaga>) {
     yield all([
         put(decrement(action.payload)),
-        put(enqueueSnackbar({message: 'Decremented the counter', options: { variant: 'info'}}))
+        put(enqueueSnackbar({message: 'Decremented the counter', options: { variant: 'error'}}))
     ]);
 }
 

@@ -36,7 +36,7 @@ const App: FC = () => {
 
   const action = () => (
       <IconButton onClick={() => console.log('clicked the close button')}>
-          <CloseIcon />
+          <CloseIcon color='action' />
       </IconButton>
   );
 
