@@ -6,7 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -17,9 +17,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "downlevelIteration": true,
+    "baseUrl": "src",
+    "typeRoots": [ "typings", "./node_modules/@types"],
+    "noErrorTruncation": true
   },
   "include": [
     "src"
-  ]
+  ],
+  "exclude": ["node_modules", "typings"]
 }

@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { StylesProvider } from '@material-ui/styles';
+import history from 'config/history';
+import Router from 'config/Router';
+import configureStore from 'config/store';
+import { ConnectedRouter } from 'connected-react-router';
+import { SnackbarProvider } from 'notistack';
+import React, { FC } from 'react';
+import { Provider } from 'react-redux';
 
-const App: React.FC = () => {
+const App: FC = () => {
+  const initialState = {} as any;
+  const store = configureStore(initialState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <StylesProvider injectFirst>
+          <SnackbarProvider maxSnack={4}>
+            <Router />
+          </SnackbarProvider>
+        </StylesProvider>
+      </ConnectedRouter>
+    </Provider>
   );
-}
+};
 
 export default App;
