@@ -1,4 +1,14 @@
+/* stylelint-disable color-no-hex */
+
 html,
 body {
+  background-color: #222222;
   font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+@media (min-width: 1920px) {
+  html,
+  body {
+    overflow: hidden;
+  }
 }

@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createLogger } from 'redux-logger';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 import createRootReducer, { ApplicationState, rootSaga } from 'store/rootStore';
-import { isDevEnv } from 'utils/helpers';
+import { isDevEnv } from 'utils/constants';
 
 interface HotNodeModule extends NodeModule {
     hot: any;

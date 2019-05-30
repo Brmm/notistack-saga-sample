@@ -1,9 +1,6 @@
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
-import { useSnackbar } from 'notistack';
 import React, { FC, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
@@ -14,21 +11,10 @@ type AppProps = {
 };
 
 const SnackbarPage: FC<AppProps> = props => {
-    const { closeSnackbar } = useSnackbar();
-
-    const action = (key: string) => (
-        <IconButton onClick={() => closeSnackbar(key)}>
-            <CloseIcon />
-        </IconButton>
-    );
-
     const handleButtonClick = () => {
         props.enqueueSnackbar({
             message: 'Clicked the snackbar summon button!',
-            options: {
-                variant: 'success',
-                action,
-            },
+            options: { variant: 'success' },
         });
     };
 
