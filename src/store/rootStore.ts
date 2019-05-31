@@ -1,5 +1,6 @@
 import { connectRouter, go, goBack, goForward, push, replace, RouterState } from 'connected-react-router';
 import { History } from 'history';
+import { actions as toastrActions, reducer as toastrReducer, ToastrState } from 'react-redux-toastr';
 import { combineReducers } from 'redux';
 import { all, fork } from 'redux-saga/effects';
 import * as homeActions from 'store/home/homeActions';
@@ -16,9 +17,19 @@ const routerActions = {
     goForward: typeof goForward,
 };
 
+const ToastrActions = {
+    add: typeof toastrActions.add,
+    clean: typeof toastrActions.clean,
+    hideConfirm: typeof toastrActions.hideConfirm,
+    remove: typeof toastrActions.remove,
+    removeByType: typeof toastrActions.removeByType,
+    showConfirm: typeof toastrActions.showConfirm,
+};
+
 export type ApplicationState = Readonly<{
     router: RouterState;
     home: HomeState;
+    toastr: ToastrState;
 }>;
 
 export function* rootSaga () {
@@ -27,12 +38,14 @@ export function* rootSaga () {
 
 export const rootActions = {
     router: routerActions,
-    home: homeActions
+    home: homeActions,
+    toastr: ToastrActions,
 };
 
 export type RootAction = ActionType<typeof rootActions>;
 
 export default (history: History) => combineReducers<ApplicationState>({
     router: connectRouter(history),
-    home: HomeReducer
+    home: HomeReducer,
+    toastr: toastrReducer,
 });

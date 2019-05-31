@@ -1,8 +1,8 @@
-/* stylelint-disable color-no-hex */
+@import './vars';
 
 html,
 body {
-  background-color: #222222;
+  background-color: $darkle;
   font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
 }
 

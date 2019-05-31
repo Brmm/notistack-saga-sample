@@ -1,7 +1,7 @@
 <div align="center">
     
 <p>
-<h1>Notistack Sample App</h1>
+<h1>toastr-react-redux-sample</h1>
 </p>
 
 <p>

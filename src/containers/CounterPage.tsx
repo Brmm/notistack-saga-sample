@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import React, { FC, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { toastr } from 'react-redux-toastr';
 import { bindActionCreators, Dispatch } from 'redux';
 import { decrementSaga, incrementSaga } from 'store/home/homeActions';
 import { HomeState } from 'store/home/homeTypes';
@@ -15,6 +16,13 @@ type CounterPageProps = {
 };
 
 const CounterPage: FC<CounterPageProps> = props => {
+    const deployAllToastrs = () => {
+        toastr.success('The title', 'The message');
+        toastr.error('Error Toast', 'The message');
+        toastr.info('Info Toast', 'The message');
+        toastr.warning('Warning Toast', 'The message');
+    };
+
     return (
         <Fragment>
             <Typography variant='h3' gutterBottom align='center' color='textPrimary'>
@@ -26,6 +34,9 @@ const CounterPage: FC<CounterPageProps> = props => {
                 </Grid>
                 <Grid item xs={3}>
                     <Button variant='contained' color='primary' onClick={() => props.decrementSaga(1)}>Snackbar & Decrement Saga</Button>
+                </Grid>
+                <Grid item xs={3}>
+                    <Button variant='contained' color='primary' onClick={deployAllToastrs}>Toastr Success</Button>
                 </Grid>
             </Grid>
         </Fragment>

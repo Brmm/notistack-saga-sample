@@ -2,8 +2,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import classnames from 'classnames';
 import ConnectedCounterPage from 'containers/CounterPage';
-import Notifiers from 'containers/Notifiers';
-import ConnectedSnackbarPage from 'containers/SnackbarPage';
 import React, { FC, Fragment } from 'react';
 import css from 'styles/home.module.scss';
 

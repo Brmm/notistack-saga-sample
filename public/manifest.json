@@ -1,6 +1,6 @@
 {
-  "short_name": "Notistack",
-  "name": "Notistack Sample",
+  "short_name": "toastr-react-redux-sample",
+  "name": "toastr-react-redux-sample",
   "icons": [
     {
       "src": "favicon.ico",
