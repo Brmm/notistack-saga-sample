@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 const App: FC = () => {
   const initialState = {} as any;
   const store = configureStore(initialState);
+  const AppContext = React.createContext(0);
 
   const theme = createMuiTheme({
     palette: {
@@ -26,17 +27,11 @@ const App: FC = () => {
    * Adding the action here would be most ideal since it'll add the close action to every snackbar
    * throughout the entire app.
    */
-  // const { closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  // const action = (key?: ReturnType<typeof closeSnackbar>) => (
-  //     <IconButton onClick={() => key ? closeSnackbar(key) : closeSnackbar()}>
-  //         <CloseIcon />
-  //     </IconButton>
-  // );
-
-  const action = () => (
-      <IconButton onClick={() => console.log('clicked the close button')}>
-          <CloseIcon color='action' />
+  const action = (key?: ReturnType<typeof closeSnackbar>) => (
+      <IconButton onClick={() => key ? closeSnackbar(key) : closeSnackbar()}>
+          <CloseIcon />
       </IconButton>
   );
 

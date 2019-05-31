@@ -6,9 +6,6 @@ import * as homeActions from 'store/home/homeActions';
 import HomeReducer from 'store/home/homeReducer';
 import homeSaga from 'store/home/homeSagas';
 import { HomeState } from 'store/home/homeTypes';
-import * as snackbarActions from 'store/snackbars/snackbarActions';
-import SnackbarReducer from 'store/snackbars/snackbarReducer';
-import { SnackbarState } from 'store/snackbars/snackbarTypes';
 import { ActionType } from 'typesafe-actions';
 
 const routerActions = {
@@ -22,7 +19,6 @@ const routerActions = {
 export type ApplicationState = Readonly<{
     router: RouterState;
     home: HomeState;
-    notifications: SnackbarState;
 }>;
 
 export function* rootSaga () {
@@ -31,14 +27,12 @@ export function* rootSaga () {
 
 export const rootActions = {
     router: routerActions,
-    home: homeActions,
-    notifications: snackbarActions,
+    home: homeActions
 };
 
 export type RootAction = ActionType<typeof rootActions>;
 
 export default (history: History) => combineReducers<ApplicationState>({
     router: connectRouter(history),
-    home: HomeReducer,
-    notifications: SnackbarReducer,
+    home: HomeReducer
 });
