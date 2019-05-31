@@ -15,6 +15,6 @@ export const defaultToastrOptions: ToastrOptions = {
         removeOnHover: false,
         transitionIn: 'fadeIn',
         transitionOut: 'fadeOut',
-        showCloseButton: false,
+        showCloseButton: true,
     },
 };

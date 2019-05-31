@@ -7,6 +7,7 @@ import * as homeActions from 'store/home/homeActions';
 import HomeReducer from 'store/home/homeReducer';
 import homeSaga from 'store/home/homeSagas';
 import { HomeState } from 'store/home/homeTypes';
+import toastrSaga from 'store/toastrs/toastrSagas';
 import { ActionType } from 'typesafe-actions';
 
 const routerActions = {
@@ -33,7 +34,7 @@ export type ApplicationState = Readonly<{
 }>;
 
 export function* rootSaga () {
-    yield all([fork(homeSaga)]);
+    yield all([fork(homeSaga), fork(toastrSaga)]);
 }
 
 export const rootActions = {

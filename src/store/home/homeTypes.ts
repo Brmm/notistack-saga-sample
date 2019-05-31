@@ -1,11 +1,11 @@
 
 export enum HomeActions {
-  INCREMENT = '@@demo/INCREMENT_COUNT',
-  DECREMENT = '@@demo/DECREMENT_COUNT',
-  INCREMENT_SAGA = '@@demo/INCREMENT_SAGA',
-  DECREMENT_SAGA = '@@demo/DECREMENT_SAGA',
+  INCREMENT = '@@home/INCREMENT_COUNT',
+  DECREMENT = '@@home/DECREMENT_COUNT',
+  INCREMENT_SAGA = '@@home/INCREMENT_SAGA',
+  DECREMENT_SAGA = '@@home/DECREMENT_SAGA',
 }
 
-export type HomeState = {
-  readonly count: number;
-};
+export type HomeState = Readonly<{
+  count: number;
+}>;
