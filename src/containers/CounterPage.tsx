@@ -36,7 +36,7 @@ const CounterPage: FC<CounterPageProps> = props => {
                     <Button variant='contained' color='primary' onClick={() => props.decrementSaga(1)}>Snackbar & Decrement Saga</Button>
                 </Grid>
                 <Grid item xs={3}>
-                    <Button variant='contained' color='primary' onClick={deployAllToastrs}>Toastr Success</Button>
+                    <Button variant='contained' color='primary' onClick={deployAllToastrs}>Show All Toast Types</Button>
                 </Grid>
             </Grid>
         </Fragment>

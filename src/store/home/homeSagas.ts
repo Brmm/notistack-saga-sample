@@ -3,11 +3,12 @@ import { HomeActions } from './homeTypes';
 import { actions as toastrActions } from 'react-redux-toastr';
 import { all, put, takeEvery } from 'redux-saga/effects';
 // import uuid from 'uuid/v4';
+import { defaultToastrOptions } from 'utils/constants';
 
 function* handleIncrement (action: ReturnType<typeof incrementSaga>) {
     yield all([
         put(increment(action.payload)),
-        put(toastrActions.add({ id: 'blaah', type: 'success', title: 'The saga title', message: 'saga is awesome', position: 'top-right' }))
+        put(toastrActions.add({ ...defaultToastrOptions, id: 'blaah', title: 'The saga title', message: 'saga is awesome' }))
     ]);
 }
 
