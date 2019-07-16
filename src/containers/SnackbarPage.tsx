@@ -4,18 +4,35 @@ import Typography from '@material-ui/core/Typography';
 import React, { FC, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { enqueueSnackbar } from 'store/snackbars/snackbarActions';
+import { incrementSaga } from 'store/home/homeActions';
+import { closeSnackbar, enqueueSnackbar } from 'store/snackbars/snackbarActions';
 
 type AppProps = {
     enqueueSnackbar: typeof enqueueSnackbar;
+    closeSnackbar: typeof closeSnackbar;
+    incrementSaga: typeof incrementSaga;
 };
 
 const SnackbarPage: FC<AppProps> = props => {
     const handleButtonClick = () => {
         props.enqueueSnackbar({
             message: 'Clicked the snackbar summon button!',
-            options: { variant: 'info' },
+            options: {
+                key: new Date().getTime() + Math.random(),
+                variant: 'success',
+                action: key => (
+                    <Button onClick={() => props.closeSnackbar(key)}>dissmiss me</Button>
+                ),
+            },
         });
+    };
+
+    const handleDismissAll = () => {
+        props.closeSnackbar();
+    };
+
+    const handleShowSnackbarBySaga = () => {
+        props.incrementSaga(1);
     };
 
     return (
@@ -25,13 +42,19 @@ const SnackbarPage: FC<AppProps> = props => {
             </Typography>
             <Grid container spacing={1} alignContent='center' alignItems='baseline' justify='center'>
                 <Grid item xs={3}>
-                    <Button variant='contained' onClick={handleButtonClick}> Display Snackbar with action </Button>
+                    <Button variant='contained' onClick={handleButtonClick}>Display Snackbar</Button>
+                </Grid>
+                <Grid item xs={3}>
+                    <Button variant='contained' onClick={handleDismissAll}>Dismiss All</Button>
+                </Grid>
+                <Grid item xs={3}>
+                    <Button variant='contained' onClick={handleShowSnackbarBySaga}>Display Snackbar by Saga</Button>
                 </Grid>
             </Grid>
         </Fragment>
     );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ enqueueSnackbar }, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ enqueueSnackbar, closeSnackbar, incrementSaga }, dispatch);
 
 export default connect(null, mapDispatchToProps)(SnackbarPage);

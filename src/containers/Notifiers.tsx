@@ -4,19 +4,19 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { ApplicationState } from 'store/rootStore';
 import { removeSnackbar } from 'store/snackbars/snackbarActions';
-import { Snackbar, SnackbarOptions } from 'store/snackbars/snackbarTypes';
+import { Snackbar } from 'store/snackbars/snackbarTypes';
 
 export type SnackbarProps = {
     snackbars: Snackbar[];
     displayed?: string[];
-    enqueueSnackbar: (message: string, options: SnackbarOptions) => void;
-    removeSnackbar: (key: string) => void;
+    enqueueSnackbar: WithSnackbarProps['enqueueSnackbar'];
+    removeSnackbar: typeof removeSnackbar
 };
 
 export class Snackbars extends Component<SnackbarProps & WithSnackbarProps> {
-    private displayed: string[] = [];
+    private displayed: (string | number)[] = [];
 
-    storeDisplayed (id: string) {
+    storeDisplayed (id: string | number) {
         this.displayed = [...this.displayed, id];
     }
 
@@ -24,6 +24,12 @@ export class Snackbars extends Component<SnackbarProps & WithSnackbarProps> {
         let notExists = false;
 
         for (const newSnackbar of newProps.snackbars) {
+            if (newSnackbar.dismissed) {
+                this.props.closeSnackbar(newSnackbar.key);
+                // @ts-ignore
+                this.props.removeSnackbar(newSnackbar.key);
+            }
+
             if (notExists) continue;
             notExists = notExists ||
                 !this.props.snackbars
@@ -36,16 +42,26 @@ export class Snackbars extends Component<SnackbarProps & WithSnackbarProps> {
     componentDidUpdate () {
         this.props.snackbars.forEach((snackbar: Snackbar) => {
             if (!snackbar.key) return;
+            if (this.displayed.includes(snackbar.key)) return;
 
-            this.props.enqueueSnackbar(snackbar.message, snackbar.options);
+            // @ts-ignore
+            this.props.enqueueSnackbar(snackbar.message, {
+                ...snackbar.options,
+                // @ts-ignore
+                onClose: (event, reason, key) => {
+                    if (snackbar.options && snackbar.options.onClose) {
+                        // @ts-ignore
+                        snackbar.options.onClose(event, reason, key);
+                    }
+                    this.props.removeSnackbar(key);
+                },
+            });
             this.storeDisplayed(snackbar.key);
-            this.props.removeSnackbar(snackbar.key);
-            this.displayed.filter(s => s !== snackbar.key);
         });
     }
 
     render () {
-        return <Fragment/>;
+        return <Fragment />;
     }
 }
 

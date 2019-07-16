@@ -5,7 +5,6 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createLogger } from 'redux-logger';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 import createRootReducer, { ApplicationState, rootSaga } from 'store/rootStore';
-import { isDevEnv } from 'utils/constants';
 
 interface HotNodeModule extends NodeModule {
     hot: any;
@@ -13,14 +12,10 @@ interface HotNodeModule extends NodeModule {
 
 export default (initialState: ApplicationState): Store<ApplicationState> => {
     const sagaMiddleware = createSagaMiddleware();
-    const middlewares: (SagaMiddleware | Middleware)[] = [sagaMiddleware, routerMiddleware(history)];
     const logger = createLogger({
         collapsed: (getState: () => any, action: AnyAction, logEntry: any) => !logEntry.error,
     });
-
-    if (isDevEnv()) {
-        middlewares.push(logger);
-    }
+    const middlewares: (SagaMiddleware | Middleware)[] = [sagaMiddleware, routerMiddleware(history), logger];
 
     const store = createStore(
         createRootReducer(history),

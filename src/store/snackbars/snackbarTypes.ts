@@ -3,6 +3,7 @@ import { OptionsObject } from 'notistack';
 export enum SnackbarActionTypes {
     ENQUEUE_SNACKBAR = '@@snackbar/ENQUEUE_SNACKBAR',
     REMOVE_SNACKBAR = '@@snackbar/REMOVE_SNACKBAR',
+    CLOSE_SNACKBAR = '@@snackbar/CLOSE_SNACKBAR',
 }
 
 export interface SnackbarState {
@@ -10,11 +11,8 @@ export interface SnackbarState {
 }
 
 export type Snackbar = {
-    key?: string,
+    key?: string | number,
     message: string,
-    options?: SnackbarOptions;
+    dismissed?: boolean;
+    options?: OptionsObject;
 };
-
-export interface SnackbarOptions extends OptionsObject {
-    autoHideDuration?: number;
-}
